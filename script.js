@@ -1,25 +1,50 @@
+let lang = {};
+
 let _data = [];
 
 function update_table(argument) {
 	$('#table').html('');
 	chrome.storage.local.get(['downloadSorter_data'], function(result) {
 		_data = result.downloadSorter_data;
-		let html = '<tr><th>Тип файла:</th><th>Папка:</th><th>&nbsp</th></tr>';
+		let html = '<tr><th>' + lang.file_type + ':</th><th>' + lang.folder + ':</th><th>&nbsp</th></tr>';
 
 		if (_data != undefined) {
 			_data.forEach(function(item, i, arr) {
-				html += '<tr><td class="extension_file">' + item.extension_file + '</td><td>' + item.path_folder + '</td><td><div class="del_button" id="' + i + '" title="Удалить"></div></td></tr>';
+				html += '<tr><td class="extension_file">' + item.extension_file + '</td><td>' + item.path_folder + '</td><td><div class="del_button" id="' + i + '" title="' + lang.delete + '"></div></td></tr>';
 			});
 		} else {
 			chrome.storage.local.set({'downloadSorter_data': ''});
 		}
 
-		$('#table').html($('#table').html() + html + '<tr><td><input type="text" id="extension_file" placeholder="Расширение файла"></td><td><input type="text" id="path_folder" placeholder="Название папки"></td><td><div class="add_button" title="Добавить"></div></td></tr>');
+		$('#table').html($('#table').html() + html + '<tr><td><input type="text" id="extension_file" placeholder="' + lang.file_extension + '"></td><td><input type="text" id="path_folder" placeholder="' + lang.folder_name + '"></td><td><div class="add_button" title="' + lang.add + '"></div></td></tr>');
    	});
 }
 
 $(document).ready(function($) {
-	update_table();
+	if (chrome.i18n.getMessage("appLang") == 'ru') {
+		lang = {
+			file_type: "Тип файла",
+			folder: "Папка",
+			delete: "Удалить",
+			file_extension: "Расширение файла",
+			folder_name: "Навание папки",
+			add: "Добавить",
+			note: "Примечание: путь к папке указывайте относительно папки загрузки, установленной по умолчанию."
+		}
+	} else {
+		lang = {
+			file_type: "File type",
+			folder: "Folder",
+			delete: "Delete",
+			file_extension: "File extension",
+			folder_name: "Folder name",
+			add: "Add",
+			note: "Note: specify the path to the folder relative to the default boot directory."
+		}
+	}
+
+	update_table();	
+	$('.note').text(lang.note);
 
 	$('#table').on('click', '.add_button', function(event) {
 		let extension_file = $('#extension_file').val();

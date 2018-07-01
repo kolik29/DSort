@@ -1,8 +1,11 @@
 {
-  "appName": {
-    "message": "UPFolder"
-  },
-  "appDesc": {
-    "message": "Сортировка загружаемых файлов в соотвествующие папки"
-  }
+  	"appName": {
+    	"message": "UPFolder"
+  	},
+  	"appDesc": {
+    	"message": "Сортировка загружаемых файлов в соотвествующие папки"
+  	},
+  	"appLang": {
+  		"message": "ru"
+  	}
 }

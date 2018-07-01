@@ -1,8 +1,11 @@
 {
-  "appName": {
-    "message": "UPFolder"
-  },
-  "appDesc": {
-    "message": "Sorting downloaded files into folders according to extensions"
-  }
+  	"appName": {
+    	"message": "UPFolder"
+  	},
+  	"appDesc": {
+    	"message": "Sorting downloaded files into folders according to extensions"
+  	},
+  	"appLang": {
+  		"message": "en"
+  	}
 }

@@ -8,7 +8,7 @@ function update_table(argument) {
 		_data = result.downloadSorter_data;
 		let html = '<tr><th>' + lang.file_type + ':</th><th>' + lang.folder + ':</th><th>&nbsp</th></tr>';
 
-		if (_data != undefined) {
+		if ((_data != undefined) && (_data != '')) {
 			_data.forEach(function(item, i, arr) {
 				html += '<tr><td class="extension_file">' + item.extension_file + '</td><td>' + item.path_folder + '</td><td><div class="del_button" id="' + i + '" title="' + lang.delete + '"></div></td></tr>';
 			});

@@ -2,6 +2,12 @@ let _data = [];
 
 chrome.downloads.onDeterminingFilename.addListener(download);
 
+/**chrome.downloads.onDeterminingFilename.addListener(function (item, suggest) {
+	suggest({
+		filename: 'torrents/' . item.filename
+	});
+});*//*test this*/
+
 function download(downloadItem) {
 	let id = downloadItem.id,
 		ext = downloadItem.filename.split('.')[downloadItem.filename.split('.').length - 1];
